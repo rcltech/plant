@@ -3,6 +3,8 @@
 #define DHTPIN 11
 
 DHT dht = DHT(DHTPIN,MYDHT);
+int soil_moisture = 0;
+float humidity = 0.0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -11,7 +13,10 @@ void setup() {
 }
 
 void loop() {
-  float a = dht.readHumidity();
-  Serial.println(a, 2);
+  humidity = dht.readHumidity();
+  soil_moisture = analogRead(A0);
+  
+  Serial.println(humidity, 2);
+  Serial.println(soil_moisture, DEC);
   delay(1000);
 }
